@@ -52,7 +52,6 @@ const EditPrompt = () => {
 
   return (
     <Suspense>
-
     <From
       type="Edit "
       post={post}
