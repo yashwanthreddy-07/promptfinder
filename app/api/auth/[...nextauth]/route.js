@@ -11,7 +11,9 @@ const handler = NextAuth(
             clientSecret:process.env.GOOGLE_CLIENT_SECRET,
         })
     ],
-    async session({session}){
+    callbacks:
+        {
+            async session({session}){
                 const sessionUser = await User.findOne({email:session.user.email})
                 session.user.id = sessionUser._id.toString()
                 return session;
@@ -38,7 +40,10 @@ const handler = NextAuth(
                 console.log(error)
                 return false;                
             }
-    }}
+    }
+        }
+    
+  }
 )
 
 export {handler as GET , handler as POST}
